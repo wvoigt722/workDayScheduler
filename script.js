@@ -6,6 +6,8 @@
 var saveBtnEL = document.querySelectorAll('.saveBtn');
 var timeDisplayEl = document.querySelector('#currentDay');
 
+
+
 // var textAreaEl = document.querySelector('');
 
 function displayTime() {
@@ -28,9 +30,16 @@ setInterval(displayTime, 1000);
   // useful when saving the description in local storage?
   //
 
+
+
 for (let i = 0; i < saveBtnEL.length; i++) {
   const saveBtn = saveBtnEL[i];
   saveBtn.addEventListener('click', function() {
+  var textAreaEl = this.parentNode.querySelector('textarea');
+  localStorage.setItem(this.parentNode.id , JSON.stringify(textAreaEl.value));
+
+
+    console.log(textAreaEl);
     console.log(this.parentNode);
   });
 }
