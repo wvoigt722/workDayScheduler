@@ -3,10 +3,10 @@
 // in the html
 
  // TODO: Add code to display the current date in the header of the page.
-var saveBtnEL = document.querySelectorAll('.saveBtn');
-var timeDisplayEl = document.querySelector('#currentDay');
+var saveBtnEL = $('.saveBtn');
+var timeDisplayEl = $('#currentDay');
 
-
+console.log(saveBtnEL)
 
 // var textAreaEl = document.querySelector('');
 
@@ -32,30 +32,20 @@ setInterval(displayTime, 1000);
 
 
 
-for (let i = 0; i < saveBtnEL.length; i++) {
-  const saveBtn = saveBtnEL[i];
-  saveBtn.addEventListener('click', function() {
-  var textAreaEl = this.parentNode.querySelector('textarea');
-  localStorage.setItem(this.parentNode.id , JSON.stringify(textAreaEl.value));
 
 
-    console.log(textAreaEl);
-    console.log(this.parentNode);
+ $('.saveBtn').each(function(){
+  
+  $(this).on('click', function() {
+  var textAreaEl = $(this).siblings('textarea');
+  localStorage.setItem($(this).parent().attr('id'), (textAreaEl.val()));
+
+  console.log(textAreaEl)
+
+    // console.log(textAreaEl);
+    // console.log(this.parentNode);
   });
-}
-
-
-  // localStorage.setItem('todo', this.textarea.value)
-
-
-
-// const button = document.getElementById('my-button');
-
-
-// button.addEventListener('click', function() {
-//   // 'this' refers to the button element that was clicked
-//   this.style.backgroundColor = 'red';
-// });
+});
 
 
 
