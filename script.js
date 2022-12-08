@@ -30,11 +30,19 @@ setInterval(displayTime, 1000);
 
 
 
-  var saveBtnEl = $('.saveBtn')
+$('[id^="hour-"]').each(function(){
+  
+  var textAreaEl = $(this).children('textarea');
+  textAreaEl.val(localStorage.getItem($(this).attr('id')));
+}
+ 
+);
 
-  var textAreaEl = saveBtnEL.siblings('textarea').text(localStorage.getItem('hour-9'))
+  // var saveBtnEl = $('.saveBtn')
 
-  console.log(textAreaEl)
+  // var textAreaEl = saveBtnEL.siblings('textarea').text(localStorage.getItem('hour-9'))
+
+  // console.log(textAreaEl)
 
 
 
