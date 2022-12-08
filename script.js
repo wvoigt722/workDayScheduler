@@ -6,7 +6,7 @@
 var saveBtnEL = $('.saveBtn');
 var timeDisplayEl = $('#currentDay');
 
-console.log(saveBtnEL)
+
 
 // var textAreaEl = document.querySelector('');
 
@@ -17,6 +17,24 @@ function displayTime() {
 
 setInterval(displayTime, 1000);
 
+
+
+
+
+
+
+// TODO: Add code to get any user input that was saved in localStorage and set
+  // the values of the corresponding textarea elements. HINT: How can the id
+  // attribute of each time-block be used to do this?
+  //
+
+
+
+  var saveBtnEl = $('.saveBtn')
+
+  var textAreaEl = saveBtnEL.siblings('textarea').text(localStorage.getItem('hour-9'))
+
+  console.log(textAreaEl)
 
 
 
@@ -32,20 +50,19 @@ setInterval(displayTime, 1000);
 
 
 
-
-
  $('.saveBtn').each(function(){
   
   $(this).on('click', function() {
   var textAreaEl = $(this).siblings('textarea');
   localStorage.setItem($(this).parent().attr('id'), (textAreaEl.val()));
 
-  console.log(textAreaEl)
+
 
     // console.log(textAreaEl);
     // console.log(this.parentNode);
   });
 });
+
 
 
 
@@ -64,10 +81,6 @@ $(function () {
   //
 
 
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-
+  
 
 });
