@@ -3,23 +3,20 @@
 // in the html
 
  // TODO: Add code to display the current date in the header of the page.
+
 var saveBtnEL = $('.saveBtn');
 var timeDisplayEl = $('#currentDay');
 
+var rightNow = dayjs().format('MMM DD, YYYY [at] HH:mm:ss a');
 
 
-// var textAreaEl = document.querySelector('');
 
 function displayTime() {
-  var rightNow = dayjs().format('MMM DD, YYYY [at] hh:mm:ss a');
   timeDisplayEl.textContent = rightNow;
+  console.log(timeDisplayEl.textContent)
 }
 
 setInterval(displayTime, 1000);
-
-
-
-
 
 
 
@@ -29,7 +26,6 @@ setInterval(displayTime, 1000);
   //
 
 
-
 $('[id^="hour-"]').each(function(){
   
   var textAreaEl = $(this).children('textarea');
@@ -37,13 +33,6 @@ $('[id^="hour-"]').each(function(){
 }
  
 );
-
-  // var saveBtnEl = $('.saveBtn')
-
-  // var textAreaEl = saveBtnEL.siblings('textarea').text(localStorage.getItem('hour-9'))
-
-  // console.log(textAreaEl)
-
 
 
  // TODO: Add a listener for click events on the save button. This code should
@@ -57,17 +46,12 @@ $('[id^="hour-"]').each(function(){
   //
 
 
-
  $('.saveBtn').each(function(){
-  
+
   $(this).on('click', function() {
   var textAreaEl = $(this).siblings('textarea');
   localStorage.setItem($(this).parent().attr('id'), (textAreaEl.val()));
 
-
-
-    // console.log(textAreaEl);
-    // console.log(this.parentNode);
   });
 });
 
@@ -75,10 +59,6 @@ $('[id^="hour-"]').each(function(){
 
 
 
-
-
-$(function () {
- 
 
 
   // TODO: Add code to apply the past, present, or future class to each time
@@ -89,6 +69,42 @@ $(function () {
   //
 
 
+
+
+  var timestamp = $.now(); 
+
+  // Use moment.js to convert the timestamp to a date object
+  var date = moment.unix(timestamp / 1000);
+  
+  // Format the date using the .format() method from moment.js
+  var formattedDate = date.format('MMM DD, YYYY [at] HH:mm:ss a');
+  
+  // Finally, you can use the formatted date in your jQuery code
+  console.log(formattedDate)
+  
+  console.log(rightNow)
   
 
-});
+
+
+
+  if (rightNow > formattedDate) {
+    $('#hour-9').removeClass('present');
+    $('#hour-9').removeClass('future');
+    $('#hour-9').addClass('past');
+    console.log('working')
+  } else if (rightNow = formattedDate) {
+    $('#hour-9').removeClass('past');
+    $('#hour-9').removeClass('future');
+    $('#hour-9').addClass('present');
+  } else if (rightNow < formattedDate)
+  $('#hour-9').removeClass('past');
+  $('#hour-9').removeClass('present');
+  $('#hour-9').addClass('future');
+
+
+ 
+
+
+
+
