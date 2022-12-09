@@ -7,7 +7,8 @@
 var saveBtnEL = $('.saveBtn');
 var timeDisplayEl = $('#currentDay');
 
-var rightNow = dayjs().format('MMM DD, YYYY [at] HH:mm:ss a');
+var rightNow = dayjs().format('MMM DD, YYYY [at] hh:mm:ss a');
+
 
 
 
@@ -77,34 +78,65 @@ $('[id^="hour-"]').each(function(){
   var date = moment.unix(timestamp / 1000);
   
   // Format the date using the .format() method from moment.js
-  var formattedDate = date.format('MMM DD, YYYY [at] HH:mm:ss a');
-  
+  var formattedDate = date.format('MMM DD, YYYY [at] hh a');
+
   // Finally, you can use the formatted date in your jQuery code
-  console.log(formattedDate)
   
   console.log(rightNow)
+  console.log(formattedDate)
   
 
 
+ var allHours = ['#hour-9', '#hour-10', '#hour-11', '#hour-12', '#hour-1', '#hour-2', '#hour-3', '#hour-4','#hour-5'];
 
 
-  if (rightNow > formattedDate) {
-    $('#hour-9').removeClass('present');
-    $('#hour-9').removeClass('future');
-    $('#hour-9').addClass('past');
-    console.log('working')
-  } else if (rightNow = formattedDate) {
+$.each(allHours, function(index, value){
+  console.log(value);
+  $(value).each(function(){
+    if (rightNow > formattedDate) {
+      $(value).removeClass('present');
+      $(value).removeClass('future');
+      $(value).addClass('past');
+    } else if (rightNow = formattedDate) {
+      $(value).removeClass('past');
+      $(value).removeClass('future');
+      $(value).addClass('present');
+    } else if (rightNow < formattedDate)
+    $(value).removeClass('past');
+    $(value).removeClass('present');
+    $(value).addClass('future');
+    });
+})
+
+
+
+
+  $('#hour-9').each(function(){
+    if (rightNow > formattedDate) {
+      $('#hour-9').removeClass('present');
+      $('#hour-9').removeClass('future');
+      $('#hour-9').addClass('past');
+    } else if (rightNow = formattedDate) {
+      $('#hour-9').removeClass('past');
+      $('#hour-9').removeClass('future');
+      $('#hour-9').addClass('present');
+    } else if (rightNow < formattedDate)
     $('#hour-9').removeClass('past');
-    $('#hour-9').removeClass('future');
-    $('#hour-9').addClass('present');
-  } else if (rightNow < formattedDate)
-  $('#hour-9').removeClass('past');
-  $('#hour-9').removeClass('present');
-  $('#hour-9').addClass('future');
+    $('#hour-9').removeClass('present');
+    $('#hour-9').addClass('future');
+    });
+
+
+
+  111
+  if (rightNow < formattedDate) {
+    console.log(true)
+  } else {
+    console.log(false)
+  }
 
 
  
-
 
 
 
